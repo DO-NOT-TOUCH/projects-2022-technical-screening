@@ -32,7 +32,53 @@ var assert = require("assert")
 
 const altNumbers = (numArray) => {
     // TODO: COMPLETE THIS FUNCTION
-    return [];
+
+    // initiate array for positive and negative numbers, store them in order 
+    // when you loop through the numArray
+    let positives = new Array()
+    let negatives = new Array()
+
+    for (let i = 0; i < numArray.length; i++) {
+        if (numArray[i] >= 0) {
+            positives.push(numArray[i])
+        } else {
+            negatives.push(numArray[i])
+        }
+    }
+
+    // initiate answer array whose length should be the same as the inputted array
+    let answer = new Array(numArray.length)
+
+    // initiate counters for the positive and negative array
+    let pos_count = 0
+    let neg_count = 0
+    if (positives.length >= negatives.length) {
+        // if number of + numbers >= number of - numbers, start with + number 
+        // and alternate
+
+        for (let i = 0; i < numArray.length; i++) {
+            if ((i % 2) == 0) {
+                answer[i] = positives[pos_count]
+                pos_count++
+            } else {
+                answer[i] = negatives[neg_count]
+                neg_count++
+            }
+        }
+    } else {
+        // if there are more - numbers, start with - number and alternate
+
+        for (let i = 0; i < numArray.length; i++) {
+            if ((i % 2) == 0) {
+                answer[i] = negatives[neg_count]
+                neg_count++
+            } else {
+                answer[i] = positives[pos_count]
+                pos_count++
+            }
+        }
+    }
+    return answer
 }
 
 module.exports = { altNumbers } // Do not modify this line
